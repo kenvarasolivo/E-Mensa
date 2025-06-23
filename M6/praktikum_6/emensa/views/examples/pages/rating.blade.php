@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gericht bewerten</title>
+    <link rel="stylesheet" href="/css/rating.css">
+</head>
+<body>
+<div class="container">
+    <h1>Gericht bewerten</h1>
+    <?php if (isset($_SESSION['error'])): ?>
+    <div class="alert alert-danger">
+            <?= htmlspecialchars($_SESSION['error']) ?>
+    </div>
+        <?php unset($_SESSION['error']); ?>
+    <?php endif; ?>
+
+    <form action="/submit_rating" method="POST">
+        <h2>{{ $gericht['name'] }}</h2>
+        <img src="img/gerichte/{{ $gericht['bildname'] ?? '00_image_missing.jpg' }}"
+                onerror="this.onerror=null; this.src='img/00_image_missing.jpg';"
+                alt="Gericht Bild" style="max-width: 25%; height: auto;">
+        <input type="hidden" name="gericht_id" value="{{ $gericht['id'] }}">
+
+        <div class="form-group">
+            <label for="sterne">Sternebewertung:</label>
+            <select id="sterne" name="sterne" required>
+                <option value="sehr gut">Sehr gut</option>
+                <option value="gut">Gut</option>
+                <option value="schlecht">Schlecht</option>
+                <option value="sehr schlecht">Sehr schlecht</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="bemerkung">Bemerkung:</label>
+            <textarea id="bemerkung" name="bemerkung" rows="4" minlength="5" required></textarea>
+        </div>
+
+        <button type="submit">Bewertung abschicken</button>
+    </form>
+</div>
+</body>
+</html>
