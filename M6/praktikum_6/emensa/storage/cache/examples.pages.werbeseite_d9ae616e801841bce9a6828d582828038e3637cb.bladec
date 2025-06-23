@@ -1,0 +1,86 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('text'); ?>
+ <img src="img/mensa-fh-aachen.jpg" height="450px">
+ <div class="mid">
+ <h1 id="ankun">Bald gibt es Essen auch online;)</h1>
+ </div>
+ <div class="paragraph">
+ <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dignissimos dolore doloremque facere nulla quae repellendus voluptatibus. Amet, assumenda at eum ex fuga libero nobis quod, quos repellendus sapiente, voluptatibus!</p>
+ </div>
+ <div class="par">
+ <h1 id="menu">Köstlichkeiten, die sie erwarten</h1>
+ </div>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('main'); ?>
+ <?php 
+ // Ensure $gerichte is defined and set up default sorting logic
+ $gerichte = $gerichte ?? []; // Fallback to an empty array if undefined
+ $sortOrder = $_GET['sort'] ?? 'asc'; // Default to ascending
+ usort($gerichte, function ($a, $b) use ($sortOrder) {
+ return $sortOrder === 'desc'
+ ? strcmp($b['name'], $a['name'])
+ : strcmp($a['name'], $b['name']);
+ });
+
+ // Limit to first 5 sorted items
+ $sortedGerichte = array_slice($gerichte, 0, 5);
+ ?>
+
+ <div class="sort-buttons">
+ <a href="?sort=asc" class="button">Sortiere aufsteigend</a>
+ <a href="?sort=desc" class="button">Sortiere absteigend</a>
+ </div>
+
+ <table>
+ <tr>
+ <th>Gerichte</th>
+ <th>Preis intern</th>
+ <th>Preis extern</th>
+ <th>Allergene</th>
+ </tr>
+ <?php $__currentLoopData = $sortedGerichte; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $gericht): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities(htmlspecialchars($gericht['name'])??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities(number_format($gericht['preisintern'], 2, ',', '.')??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities(number_format($gericht['preisextern'], 2, ',', '.')??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td>
+ <?php if(isset($allergeneByGericht[$gericht['id']]) && count($allergeneByGericht[$gericht['id']]) > 0): ?>
+ <?php echo \htmlentities(implode(', ', array_unique(array_column($allergeneByGericht[$gericht['id']], 'code')))??'', ENT_QUOTES, 'UTF-8', false); ?>
+
+ <?php else: ?>
+ Keine Allergene
+ <?php endif; ?>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </table>
+
+ <h3>Allergen Details:</h3>
+ <ul>
+ <?php 
+ $allergensList = [];
+ ?>
+
+ <?php $__currentLoopData = $sortedGerichte; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $gericht): $loop = $this->incrementLoopIndices();  ?>
+ <?php $__currentLoopData = $allergeneByGericht[$gericht['id']] ?? []; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $allergen): $loop = $this->incrementLoopIndices();  ?>
+ <?php 
+ if (!empty($allergen['code'])) {
+ $name = isset($allergen['name']) ? htmlspecialchars($allergen['name']) : '';
+ $allergensList[$allergen['code']] = $name;
+ }
+ ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <?php $__currentLoopData = $allergensList; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $code => $name): $loop = $this->incrementLoopIndices();  ?>
+ <li><?php echo \htmlentities($code??'', ENT_QUOTES, 'UTF-8', false); ?>: <?php echo \htmlentities($name??'', ENT_QUOTES, 'UTF-8', false); ?></li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('examples.layout.werbeseite_layout'); } ?>
