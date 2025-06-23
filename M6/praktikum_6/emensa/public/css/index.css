@@ -1,0 +1,356 @@
+/* css/index.css */
+
+/* Header */
+
+.top {
+    position: fixed; /* Makes it stay at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensures it stays above other content */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    padding-right:10%;
+    padding-left: 10%;
+}
+
+#headphoto {
+    height: 80px;
+    margin: 20px;
+}
+
+#choices {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+#choices .c1 {
+    background-color: #0a58ca;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    min-width: 150px; /* Fixed width for consistency */
+    height: 60px;      /* Same height for all buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#choices .c1:hover {
+    background-color: darkblue;
+}
+
+#choices .c1 a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#choices .c1 span,
+#choices .c1 strong,
+#choices .c1 a[href="/abmeldung"] {
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+#choices .c1#anmeldung {
+    flex-direction: column; /* stack vertically */
+    justify-content: center;
+    text-align: center;
+}
+
+/* Background gradient on body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, steelblue, darkblue);
+    min-height: 100vh;
+    padding-top: 120px; /* accommodate fixed header */
+}
+
+/* Glass effect wrapper */
+.glass-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Text*/
+#mensabild {
+    display: block;
+    margin: 30px auto 30px auto; /* top: 30px, right: auto, bottom: 0, left: auto */
+
+    max-width: 100%;
+    height: 450px;
+    justify-content: center;
+}
+
+/* Main */
+
+main{
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+main h1, main h2, main h3, main p {
+    text-align: left;
+}
+
+.paragraph{
+    display: flex;
+    text-align: left;
+    margin: 0 auto;
+}
+
+table{
+    border: 2px solid black;
+    margin: auto;
+    border-collapse: collapse;
+
+    height:200px;
+    td{
+        font-size: 20px;
+    }
+}
+
+.rind{
+    border-top:2px solid black;
+}
+
+td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+
+#zahl{
+    list-style: none;
+
+    display: grid;
+    grid-template-columns:  auto auto auto ;
+    li{
+        margin-right:20px;
+        font-weight:bold;
+        font-size: 20px;
+    }
+}
+
+.c3{
+    display:grid;
+    grid-template-columns: auto auto 40%;
+    justify-content: start;
+
+    .text{
+        position: relative;
+        margin-right: 10px;
+        label{
+            position:absolute;
+            top: -20px;
+        }
+    }
+}
+
+.select{
+    height:20px;
+}
+
+.datenschutz{
+    margin-right: 10px;
+}
+
+.beste{
+    margin-left: 100px;
+}
+
+footer{
+    border-top: 1px solid black;
+}
+
+footer ul {
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+
+}
+
+footer li {
+    margin: 20px;
+}
+
+footer li :not(:last-child){
+    border-right: 1px solid darkgray;
+    padding-right: 20px;
+}
+
+.besuch{
+    display: flex;
+    justify-content: center;
+}
+
+/* Standard styles for larger screens */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.form-group label {
+    flex: 0 0 150px; /* Label width */
+    margin-right: 1em;
+    text-align: right;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    flex: 1;
+    width: auto; /* Allow flexible width */
+}
+
+/* Responsive styles for smaller screens (max-width: 600px) */
+@media (max-width: 600px) {
+    .form-group {
+        display: block; /* Stack labels and inputs vertically */
+    }
+
+    .form-group label {
+        display: block; /* Labels on top */
+        margin-bottom: 0.5em;
+        text-align: left; /* Align text to the left */
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%; /* Full width */
+    }
+    /* Highlighted rows styling */
+
+
+}
+.highlighted {
+    background-color: #ffffcc; /* Light yellow background */
+    font-weight: bold;
+    border: 2px solid #ffcc00; /* Add a golden border */
+}
+.guest-reviews {
+    border-top: 2px solid #333;
+    margin-top: 20px;
+    padding-top: 10px;
+    color: black;
+}
+
+.guest-review {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.guest-review h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.guest-review p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+/* navigation styling */
+.navigation-links {
+    display: flex;
+    flex-direction: column; /* Change to row for horizontal */
+}
+
+.navigation-links a {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin: 10px;
+}
+
+.navigation-links a:hover {
+    background-color: #218838;
+}
+
+/* table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+    color: black;
+}
+
+th {
+    font-weight: bold;
+    background-color: lightgrey;
+}
+
+tr{
+    background-color: white;
+}
+
+tr:hover {
+    background-color: lightgrey;
+}
+
+img {
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #0a58ca;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: darkblue;
+}

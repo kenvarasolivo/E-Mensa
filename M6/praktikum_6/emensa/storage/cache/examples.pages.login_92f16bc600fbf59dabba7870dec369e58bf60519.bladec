@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+ <meta charset="UTF-8">
+ <title>Login</title>
+</head>
+<body>
+<h1>Anmeldung</h1>
+<!-- Display error message if it exists -->
+<?php if (!empty($error)): ?>
+<p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+<?php endif; ?>
+
+<form action="/anmeldung_verifizieren" method="POST">
+ <label for="email">E-Mail:</label>
+ <input type="email" id="email" name="email" required>
+
+ <label for="password">Passwort:</label>
+ <input type="password" id="password" name="password" required>
+
+ <button type="submit">Anmelden</button>
+</form>
+</body>
+</html>

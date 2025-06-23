@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--- Praktikum DBWT. Autoren:
+- Kenvara Solivo, Lwie, 3660821
+- Hanif Aulia, Ibrahim, 3657278
+-->
+
+<html lang="de">
+<head>
+ <meta charset="UTF-8">
+ <title>Title</title>
+ <link rel="stylesheet" href="css/index.css">
+ <?php echo $this->yieldContent('extracss'); ?>
+<body>
+<div class="dbwt">
+ <head>
+ <?php $this->startSection('header'); ?>
+ <div class="top">
+ <img id="head" src="logo-studentenwerk.png" >
+ <ul id="choices">
+ <li class="c1"><a href="#ankun">Ankündigung</a></li>
+ <li class="c1"><a href="#menu"> Speisen</a> </li>
+ <li class=" c1"><a href="#geld">Zahlen</a></li>
+ <li class = "c1"><a href="#kontakt">Kontakt</a></li>
+ <li id= "c2" class = "c1"><a href="#wichtig">Wichtig für uns</a></li>
+ </ul>
+ </div>
+ <?php echo $this->yieldSection(); ?>
+ </head>
+ <main>
+ <?php echo $this->yieldContent('text'); ?>
+
+ <?php echo $this->yieldContent('main'); ?>
+
+ <br><br><br>
+ 
+ <?php $this->startSection('footer'); ?>
+ <footer>
+ <ul>
+ <li>(c) E-Mensa GmbH</li>
+ <li> &ltIhre Namen hier&gt</li>
+ <li>Impressum</li>
+ </ul>
+ </footer>
+ <?php echo $this->yieldSection(); ?>
+ </main>
+</div>
+</body>
+</html>
